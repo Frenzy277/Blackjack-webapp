@@ -1,5 +1,4 @@
 module Helpers
-  START_BALANCE = 2_000
 
   def check_entry_params(params)
     if params[:player_name] == ''
