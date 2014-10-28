@@ -30,7 +30,8 @@ post '/bet' do
 end
 
 post '/game' do
-  session[:deck] = Deck.new(2)
+
+  session[:deck] = Deck.new number_of_decks(session[:difficulty])
   session[:bet] = params[:bet]
 
 

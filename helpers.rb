@@ -18,4 +18,12 @@ module Helpers
     end
   end
 
+  def number_of_decks(difficulty)
+    if difficulty == '1'
+      1
+    else
+      2
+    end
+  end
+
 end

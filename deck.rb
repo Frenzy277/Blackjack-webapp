@@ -5,7 +5,7 @@ class Deck
   CARD_NAMES = Array(2..10).push(%w(J Q K A)).flatten
 
   attr_accessor :pack, :up_edge, :player_cut
-  def initialize(number_of_decks = 4)
+  def initialize(number_of_decks = 1)
     @pack = []
     number_of_decks.times do
       SUITS.each do |suit|
