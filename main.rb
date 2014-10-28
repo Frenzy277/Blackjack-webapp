@@ -5,16 +5,28 @@ require 'pry'
 set :sessions, true
 
 get '/' do
-  "Hello World! For Lesson 3 :assignment Render Text"
+  erb :home
 end
 
-get '/foo' do
-  erb :foo
+get '/rules' do
+  erb :rules
+  # to do
 end
 
-get '/bar' do
-  erb :"/foo/bar"
+post '/bet' do
+  session[:player_name] = params[:player_name].capitalize
+  session[:difficulty] = params[:difficulty]
+  session[:game_count] = params[:game_count]
+  erb :bet
 end
+
+post '/game' do
+  session[:bet] = params[:bet]
+
+  #binding.pry
+  erb :game
+end
+
 
 
 
