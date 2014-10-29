@@ -1,0 +1,35 @@
+<h1>Dealers hand</h1>
+<h3><%#= display_hand(session[:dealer_hand]) %></h3>
+<% display_hand(session[:dealer_hand]).each do |c| %>
+  <img src='/images/cards/<%= c %>' />
+<% end %>
+
+<% if session[:player_status] == 'stay' %>
+
+<% end %>
+<br/>
+<br/>
+
+<h1><%= session[:player_name] %>'s hand</h1>
+<% display_hand(session[:player_hand]).each do |c| %>
+  <img src='/images/cards/<%= c %>' />
+<% end %>
+<h3><%= session[:player_name] %>'s hand total is <%= calculate_total(session[:player_hand]) %></h3>
+<br/>
+
+
+
+<% if calculate_total(session[:player_hand]) < 21 && session[:player_status] != 'stay' %>
+  <form action='/hit' method='post'>
+    <input type='submit' name='hit' value='Hit' class='btn btn-info' />
+  </form>
+
+  <form action='/stay' method='post'>
+    <input type='submit' name='stay' value= 'Stay' class='btn btn-warning' />
+  </form>
+<% end %>
+
+
+<%# if session[:player_hand].size == 2 && calculate_total(session[:player_hand]) != 21 %>
+    <!-- <input type='submit' name='double' value='Double' class='btn btn-danger' /> -->
+  <%# end %>
