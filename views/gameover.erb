@@ -1,0 +1,8 @@
+<% if session[:balance] <= 0 %>
+  <h2><%= "Sorry, #{name}'s balance is dry. Restart the game, if you want to play again." %></h2>
+<% elsif session[:balance] > 2000 %>
+  <h2><%= "Farewell #{name}!!! Are you up for Vegas now?" %></h2>
+<% else %>
+  <h2><%= "#{name} should train more. You better restart the game! :)" %></h2>
+
+<% end %>

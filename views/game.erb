@@ -1,35 +1,48 @@
-<h1>Dealers hand</h1>
-<h3><%#= display_hand(session[:dealer_hand]) %></h3>
-<% display_hand(session[:dealer_hand]).each do |c| %>
-  <img src='/images/cards/<%= c %>' />
+<h1> Blackjack! </h1>
+<% if @end %>
+  <h4><%= "Would #{name} like to play again?" %></h4>
+  <form action='/game/again' method='post' />
+    <input type='submit' name='yes' value='Yes' class='btn btn-success' />
+    <input type='submit' name='no' value='No' class='btn' />
+  </form>
 <% end %>
 
-<% if session[:player_status] == 'stay' %>
+<div class="well">
+  <h4>Dealer's hand</h4>
+  <% if session[:hide_hole] %>
+    <%= display_card(session[:dealer_hand].first) %>
+    <img src="/images/cards/cover.jpg" class='card' />
+  <% else %>
+    <% session[:dealer_hand].each do |card| %>
+      <%= display_card(card) %>
+    <% end %>
+    
+    <% if session[:player_status] == 'stay' && !@end %>
+      <form action='/game/dealer' method='post'>
+        <input type='submit' name='hit' value='See next dealers card' class='btn btn-info' />
+      </form>
+    <% end %>
 
-<% end %>
-<br/>
-<br/>
+    <h4><%= "Dealer's hand total is #{calculate_total(session[:dealer_hand])}" %></h4>
+  <% end %>
+</div>
 
-<h1><%= session[:player_name] %>'s hand</h1>
-<% display_hand(session[:player_hand]).each do |c| %>
-  <img src='/images/cards/<%= c %>' />
-<% end %>
-<h3><%= session[:player_name] %>'s hand total is <%= calculate_total(session[:player_hand]) %></h3>
-<br/>
+<div class="well">
+  <p>
+    <h4><%= "#{name}'s hand. The total is #{calculate_total(session[:player_hand])}" %></h4>
+    <div class='btn btn-inverse btn-small'> Bet: <%= session[:bet] %></div>
+  </p>
+  <% session[:player_hand].each do |card| %>
+    <%= display_card(card) %>
+  <% end %>
+</div>
 
-
-
-<% if calculate_total(session[:player_hand]) < 21 && session[:player_status] != 'stay' %>
-  <form action='/hit' method='post'>
+<% if session[:player_status] == 'decide' %>
+  <form action='/game/player/hit' method='post' id="hit">
     <input type='submit' name='hit' value='Hit' class='btn btn-info' />
   </form>
 
-  <form action='/stay' method='post'>
+  <form action='/game/player/stay' method='post' id="stay">
     <input type='submit' name='stay' value= 'Stay' class='btn btn-warning' />
   </form>
 <% end %>
-
-
-<%# if session[:player_hand].size == 2 && calculate_total(session[:player_hand]) != 21 %>
-    <!-- <input type='submit' name='double' value='Double' class='btn btn-danger' /> -->
-  <%# end %>

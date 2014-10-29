@@ -2,25 +2,18 @@ require 'pry'
 
 module Helpers
 
-  def display_hand(hand)
-    cards = hand.map do |card|
-      card[0] + "_" + card[1] + ".jpg"
-    end
-    cards.each do |c|
-      "<img src='/public/images/cards/#{c}' />"
-    end
+  def name
+    session[:player_name]
   end
 
+  def balance
+    session[:balance]
+  end
 
-  # def display_hand(hand, hide = false)
-  #   cards = []
-  #   unless hide
-  #     hand.each_index { |x| cards << hand[x] }
-  #     cards.join(', ')
-  #   else
-  #     hand[0]  # Shows dealers first card only and hole is hidden.
-  #   end
-  # end
+   def display_card(card)
+    "<img src='/images/cards/#{card[0]}_#{card[1]}.jpg' class='card' />"
+  end
+
 
   def calculate_total(hand)
     values = hand.map do |card| 
@@ -42,27 +35,9 @@ module Helpers
     total
   end
 
-  # def check_entry_params
-  #   if params[:player_name] == '' || params[:player_name].nil? || params[:difficulty] == "0" || params[:difficulty].nil?
-  #     redirect '/'
-  #   end
-  # end
-
-  # def set_minimal_bet(difficulty)
-  #   case difficulty
-  #   when '1' then 10
-  #   when '2' then 100
-  #   when '3' then 200
-  #   end
-  # end
-
-  # def number_of_decks(difficulty)
-  #   if difficulty == '1'
-  #     1
-  #   else
-  #     2
-  #   end
-  # end
+  def blackjack?(hand)
+    hand.size == 2 && calculate_total(hand) == 21
+  end
 
 
 end

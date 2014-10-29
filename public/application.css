@@ -1,0 +1,21 @@
+form#hit {
+  float: left;
+  margin-right: 10px;
+}
+
+
+form#stay {
+  float: left;
+  margin-right: 10px;
+}
+
+form#double {
+  float: left;
+}
+
+
+img.card {
+  border-radius: 5px;
+  border: 1px solid black;
+  margin: 0px 10px 10px 0px;
+}
