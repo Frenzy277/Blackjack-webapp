@@ -6,14 +6,9 @@ module Helpers
     session[:player_name]
   end
 
-  def balance
-    session[:balance]
-  end
-
-   def display_card(card)
+  def display_card(card)
     "<img src='/images/cards/#{card[0]}_#{card[1]}.jpg' class='card' />"
   end
-
 
   def calculate_total(hand)
     values = hand.map do |card| 

@@ -2,8 +2,11 @@ require 'rubygems'
 require 'sinatra'
 require 'pry'
 require_relative 'helpers'
-require_relative 'shared_constants'
-include SharedConstants
+
+START_BALANCE = 2_000
+HIGH_CARDS = %w(10 jack queen king ace)
+BLACKJACK_BENCHMARK = 21
+DEALER_MIN_HIT = 17
 
 set :sessions, true
 helpers Helpers
@@ -60,11 +63,11 @@ end
 post '/game/player/hit' do
   session[:player_hand] << session[:deck].pop
   total = calculate_total(session[:player_hand])
-  if total > 21
+  if total > BLACKJACK_BENCHMARK
     @info = "Sorry, it seems like #{name} busted!"
     session[:player_status] = 'loss'
     @end = true
-  elsif total == 21
+  elsif total == BLACKJACK_BENCHMARK
     redirect '/game/player/stay'
   end
 
@@ -77,7 +80,7 @@ post '/game/player/stay' do
   end
   session[:player_status] = 'stay'
   session[:hide_hole] = false
-  if calculate_total(session[:dealer_hand]) > 17
+  if calculate_total(session[:dealer_hand]) >= DEALER_MIN_HIT
     redirect '/game/results'
   end
   erb :game
@@ -85,27 +88,26 @@ end
 
 post '/game/dealer' do
   session[:dealer_hand] << session[:deck].pop
-  dealer_total = calculate_total(session[:dealer_hand])
-  if dealer_total >= 17
+  if calculate_total(session[:dealer_hand]) >= DEALER_MIN_HIT
     redirect '/game/results'
   end
   erb :game
 end
 
-
 get '/game/results' do
   dealer_total = calculate_total(session[:dealer_hand])
   player_total = calculate_total(session[:player_hand])
-  if dealer_total > 21
+  if dealer_total > BLACKJACK_BENCHMARK
     session[:balance] += (session[:bet] * 2)
     @success = "Congratulations, Dealer busted! #{name}'s balance is now #{session[:balance]}."
-  elsif dealer_total == 21
+  elsif dealer_total == BLACKJACK_BENCHMARK
     if blackjack?(session[:player_hand]) && !blackjack?(session[:dealer_hand])
+      session[:balance] += (session[:bet] * 2) + (session[:bet] / 2))
       @success = "Congratulations, #{name} wins!
-              #{name} has Blackjack and dealer has only 21. 
+              #{name} has Blackjack and dealer has only #{BLACKJACK_BENCHMARK}. 
               #{name}'s balance is now #{session[:balance]}."
     elsif !blackjack?(session[:player_hand]) && blackjack?(session[:dealer_hand])
-      @info = "Sorry #{name}, dealer had Blackjack but you only had 21."
+      @info = "Sorry #{name}, dealer had Blackjack but you only had #{BLACKJACK_BENCHMARK}."
     end
   elsif dealer_total == player_total
     session[:balance] += session[:bet]

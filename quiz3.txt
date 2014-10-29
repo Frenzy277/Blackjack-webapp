@@ -1,0 +1,46 @@
+1) What is HTML? What is CSS? What is Javascript?
+HTML is Hypertext Markup Language and forms a back-bone structure of all pages by using <>'s as tags.
+CSS stands for Cascading Style Sheets and this language gives webpages a glance of graphical design. If HTML would be bones then CSS is skin.
+Javascript is a language (mostly used for front-end) that can manipulate DOMs around and make web pages trully dynamic. Via Javascript you can add some HTML or CSS or remove dynamically for user.
+
+2) What are the major parts of an HTTP request?
+Headers, verbs (get, post, put, delete), URL, body for post request.
+
+3) What are the major parts of an HTTP response?
+Headers, Body, Status code, Location, payload(html, json, xml)
+
+4) How do you submit an HTTP POST request, with a "username" attribute set to "bob"? What if we wanted a GET request instead?
+Through a form. Forms method must be set to "post" and action must lead to valid path.
+<form action="/post" method="post">
+  <input type="text" name="username" value="bob" />
+</form>
+
+GET request should have the information in the URL - /username/:bob 
+
+5) Why is it important for us, as web developers, to understand that HTTP is a "stateless" protocol?
+Because its crutial for building web applications in regard or information persistance. (logins, shopping carts etc.)
+
+6) If the internet is just HTTP requests/responses, why do we only use browsers to interface with web applications? Are there any other options?
+Yes, curl for instance can access the Internet from a command line and issue HTTP requests.
+
+7) What is MVC, and why is it important?
+MVC stands for Model, View, Controller. 
+
+
+The below questions are about Sinatra:
+
+1) At a high level, how are requests processed?
+Requests come from client (user) and Sinatra handles them in controller by HTTP verbs helper methods like get/post/put/delete.
+
+2) In the controller/action, what's the difference between rendering and redirecting?
+Redirect generates a get request to another route and there it might be redirected again or rendered. From HTTP view returns code 300 or (3xx)
+Render - returns a ERB/Haml view. From HTTP view returns code 200 (or 2xx)
+
+3) In the ERB view template, how do you show dynamic content?
+Through <% ruby_code_here %>. ERB stands for embeded ruby and thus we can use ruby and variables or methods or sessions to manipulate with the content.
+
+4) Given what you know about ERB templates, when do you suppose the ERB template is turned into HTML?
+I think when it is rendered from controller and issued to clients browser.
+
+5) What's the role of instance variables in Sinatra?
+Instance variables do not persist through requests, their job is temporary, maybe control some flow or throw a message to a user.
