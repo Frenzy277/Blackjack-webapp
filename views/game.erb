@@ -9,11 +9,16 @@
   <% end %>
 
   <% if @end %>
-    <h4><%= "Would #{name} like to play again?" %></h4>
-    <div class="yes_no_buttons">
-      <a href="/bet" class='btn btn-success'>Yes</a>
-      <a href="/gameover" class='btn'>No</a>
-    </div>
+    <% if session[:balance] > session[:min_bet] %>
+      <h4><%= "Would #{name} like to play again?" %></h4>
+      <div class="yes_no_buttons">
+        <a href="/bet" class='btn btn-success'>Yes</a>
+        <a href="/gameover" class='btn'>No</a>
+      </div>
+    <% else %>
+      <h4><%= "Sorry, #{name}'s balance is dry. Restart the game, if you want to play again." %></h4>
+      Start over &rarr; <a href="/">here</a>!
+    <% end %>
   <% end %>
 
   <div class="well">

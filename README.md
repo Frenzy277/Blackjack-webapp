@@ -1,7 +1,7 @@
 # BLACKJACK assignment
 
 This repository serves as home for my first Sinatra web app - Blackjack.
-The assignment is done for Tealeaf Academy - course 1 - week 3.
+The assignment is done for Tealeaf Academy - course 1 - week 4.
 
 
 ## How to start?

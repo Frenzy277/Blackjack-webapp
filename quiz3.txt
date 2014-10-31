@@ -4,10 +4,10 @@ CSS stands for Cascading Style Sheets and this language gives webpages a glance 
 Javascript is a language (mostly used for front-end) that can manipulate DOMs around and make web pages trully dynamic. Via Javascript you can add some HTML or CSS or remove dynamically for user.
 
 2) What are the major parts of an HTTP request?
-Headers, verbs (get, post, put, delete), URL, body for post request.
+Headers, verbs (get, post, put, delete), URL, parameters.
 
 3) What are the major parts of an HTTP response?
-Headers, Body, Status code, Location, payload(html, json, xml)
+Headers, Body, Status code, Location, payload(html, json, xml).
 
 4) How do you submit an HTTP POST request, with a "username" attribute set to "bob"? What if we wanted a GET request instead?
 Through a form. Forms method must be set to "post" and action must lead to valid path.

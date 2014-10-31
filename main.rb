@@ -61,7 +61,7 @@ get '/game' do
   session[:dealer_hand] << session[:deck].pop
   session[:player_hand] << session[:deck].pop
   session[:dealer_hand] << session[:deck].pop
-  session[:hide_hole] = true
+  session[:hide_hole]     = true
   session[:player_status] = 'decide'
 
   if blackjack?(session[:player_hand]) && !HIGH_CARDS.include?(session[:dealer_hand][0][1])
@@ -81,9 +81,9 @@ post '/game/player/hit' do
   total = calculate_total(session[:player_hand])
 
   if total > BLACKJACK_BENCHMARK
-    @info = "Sorry, it seems like #{name} busted at #{total}!"
+    @warning                = "Sorry, it seems like #{name} busted at #{total}!"
     session[:player_status] = 'loss'
-    @end = true
+    @end                    = true
   elsif total == BLACKJACK_BENCHMARK
     redirect '/game/player/stay'
   end
@@ -147,7 +147,7 @@ end
 
 # Betting system
   get '/bet' do
-    session[:bet] = nil
+    session[:bet]       = nil
     session[:hide_hole] = true
 
     set_min_bet
@@ -164,7 +164,7 @@ end
       halt erb(:bet)
     end
 
-    session[:bet] = bet
+    session[:bet]      = bet
     session[:balance] -= session[:bet]
     redirect '/game'
   end
