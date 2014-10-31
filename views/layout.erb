@@ -13,17 +13,24 @@
     <div class="navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-          <ul class="nav nav-pills">
-            <li><a href="/" >Start playing!</a></li>
-            <li><a href="https://github.com/Frenzy277/Blackjack-webapp" >GitHub</a></li>
-            <% if session[:balance] && @gameover.nil? %>
-              <div class='pull right'>
-                <li class='btn btn-info'><%= difficulty_name %></li>
-                <li class='btn btn-primary'>House: €<%= session[:house] %></li>
-                <li class='btn btn-danger'>Balance: €<%= session[:balance] %></li>
-              </div>
-            <% end %>
-          </ul>
+          <strong>
+            <ul class="nav nav-pills">
+              <li><a href="/" >Start playing!</a></li>
+              <li><a href="https://github.com/Frenzy277/Blackjack-webapp" ><i class="icon-star icon-white"></i> Star me on GitHub</a></li>
+              <% if session[:game_count] %>
+                <span class="badge badge-inverse" id="game_count">
+                  <%= "Game count: #{session[:game_count]}" %><br>
+                  <%= "Difficulty: #{difficulty_name if session[:difficulty]}" %>
+                </span>
+              <% end %>
+              <% if session[:balance] && @gameover.nil? %>
+                <div class='pull right'>
+                  <li class='btn btn-primary'>House: €<%= session[:house] %></li>
+                  <li class='btn btn-danger'>Balance: €<%= session[:balance] %></li>
+                </div>
+              <% end %>
+            </ul>
+          </strong>
           
         </div>
       </div>

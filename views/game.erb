@@ -1,5 +1,13 @@
 <div id='game'>
-
+  <% if difficulty_name == 'Challenge' && session[:game_count] == 100 %>
+    <% if session[:balance] > session[:house] %>
+      <h1> Winner winner chicken dinner...</h1>
+      <h2> Congratulations, <%= name %> brought down the house! </h2>
+    <% else %>
+      <h1> Challenge failed! </h1>
+    <% end %>
+  <% end %>
+ 
   <% if @info %>
     <div class="alert alert-info"><%=@info%></div>
   <% elsif @success %>
@@ -40,7 +48,7 @@
     </span>
     <% if session[:player_status] == 'decide' %>
       <span class='decision'>
-        <h4>What would you like to do?</h4>
+        <h4>What would <%= name %> like to do?</h4>
       </span>
       <span class='left'>
         <form action='/game/player/hit' method='post' id="hit">
@@ -54,7 +62,7 @@
     <% elsif session[:player_status] == 'stay' && !@end %>
       <span class='left'>
         <form action='/game/dealer' method='post' id="dealer_show_card">
-          <input type='submit' name='hit' value='See next dealers card' class='btn btn-info' />
+          <input type='submit' name='hit' value='See next dealers card' class='btn btn-info'/>
         </form>
       </span>
     <% end %>
@@ -69,5 +77,6 @@
     <% end %>
     <h4><%= "#{name}'s hand total is #{calculate_total(session[:player_hand])}." %></h4>
   </div>
+
 
 </div>

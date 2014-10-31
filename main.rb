@@ -16,6 +16,8 @@ set :sessions, true
 helpers Helpers
 
 get '/' do
+  session[:game_count] = nil
+  session[:difficulty] = nil
   session[:balance] = nil
   session[:bet] = nil
   erb :home

@@ -1,4 +1,5 @@
 .nav-pills {
+  font-family: Verdana, sans-serif;
   margin-top: 5px;
   margin-bottom: 0px;
 }
@@ -49,6 +50,7 @@ img.card {
 
 .bet {
   float: left;
+  margin-left: 20px;
   margin-right: 20px;
 }
 
@@ -57,3 +59,14 @@ img.card {
   margin-right: 20px;
 }
 
+.well {
+  margin-bottom: 0px;
+}
+
+.icon-white {
+  color: yellow;
+}
+
+#game_count {
+  margin-left: 100px;
+}

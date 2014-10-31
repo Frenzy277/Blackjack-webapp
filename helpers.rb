@@ -20,7 +20,7 @@ module Helpers
       when 2 then session[:min_bet] = HARD_MIN_BET
       when 3 then session[:min_bet] = CHALLENGE_MIN_BET
       end
-    elsif session[:game_count] % 10 == 0
+    elsif session[:game_count] % 5 == 0
       case session[:difficulty]
       when 1 then session[:min_bet] += EASY_MIN_BET
       when 2 then session[:min_bet] += HARD_MIN_BET
