@@ -1,9 +1,26 @@
-<h1>Welcome to my first Blackjack webapp!</h1>
+<div class="hero-unit">
+  
+  <h1>Welcome to Blackjack!</h1> <br/>
+  <div class="left">
+    <h3>What is your name?</h3>
+    <form action="/new_player" method="post">
+      <input type="text" placeholder="Enter your name" name="player_name" class="form-control" id="name" /><br>
 
-<img src="http://ucasino.com/wp-content/uploads/2013/10/BlackJack.jpg" alt="Blackjack" />
+      <select name="difficulty" class="form-control">
+        <option value='0'>Select a difficulty</option>
+        <option value='1'>Easy</option>
+        <option value='2'>Hard</option>
+        <option value='3'>Challenge</option>
+      </select> <br/>
 
-<h3>Let's get started! What is your name?</h3>
-<form action="/new_player" method="post">
-  <input type="text" placeholder="Enter your name here" name="player_name" class="form-control" /> <br>
-  <input type="submit" class="form-control btn btn-primary btn-lg" value="Start" />
-</form>
+      <input type="submit" class="form-control btn btn-primary btn-large" value="Let's start!" />
+    </form>
+  </div>
+  <div class="right">
+    <img src="http://ucasino.com/wp-content/uploads/2013/10/BlackJack.jpg" alt="Blackjack" id='intro-pic' />
+  </div>
+
+  <div class="clear"></div>
+
+
+</div>

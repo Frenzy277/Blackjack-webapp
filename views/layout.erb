@@ -1,36 +1,42 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Blackjack!</title>
+    <title>Blackjack web app</title>
     <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/application.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="/application.js"></script>
   </head>
   <body style="padding-top: 50px;">
 
-    <div class="navbar navbar-fixed-top">
+    <div class="navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-            <ul class="nav">
-              <li><a href="/">Start playing!</a></li>
-              <% if session[:balance] %>
-                <li><div class='btn btn-danger'>€<%= session[:balance] %></div></li>
-              <% end %>
-            </ul>
+          <ul class="nav nav-pills">
+            <li><a href="/" >Start playing!</a></li>
+            <li><a href="/rules" >Rules</a></li>
+            <li><a href="https://github.com/Frenzy277/Blackjack-webapp" >GitHub</a></li>
+            <% if session[:balance] && @gameover.nil? %>
+              <div class='pull right'>
+                <li class='btn btn-info'><%= difficulty_name %></li>
+                <li class='btn btn-primary'>House: €<%= session[:house] %></li>
+                <li class='btn btn-danger'>Balance: €<%= session[:balance] %></li>
+              </div>
+            <% end %>
+          </ul>
+          
         </div>
       </div>
     </div>
 
-  <div class="container">
-    <%if @error %>
-      <div class="alert alert-error"><%=@error%></div>
-    <% elsif @info %>
-      <div class="alert alert-info"><%=@info%></div>
-    <% elsif @success %>
-      <div class="alert alert-success"><%=@success%></div>
-    <% elsif @warning %>
-      <div class="alert alert-warning"><%=@warning%></div>
-    <% end %>
+
+
+    <div class="container">
+      <%if @error %>
+        <div class="alert alert-error"><%=@error%></div>
+      <% end %>
       <%= yield %>
-  </div>
+    </div>
   </body>
 </html>

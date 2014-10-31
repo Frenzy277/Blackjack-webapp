@@ -1,21 +1,59 @@
-form#hit {
-  float: left;
-  margin-right: 10px;
+.nav-pills {
+  margin-top: 5px;
+  margin-bottom: 0px;
 }
 
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.clear {
+  clear: both;
+}
+
+form#hit {
+  float: left;
+  margin: 6px 5px 0px 0px;
+}
 
 form#stay {
   float: left;
-  margin-right: 10px;
+  margin: 6px 5px 0px 0px;
 }
 
-form#double {
+form#dealer_show_card {
   float: left;
+  margin: 6px 5px 0px 0px;
 }
-
 
 img.card {
+  height: 150px;
   border-radius: 5px;
   border: 1px solid black;
   margin: 0px 10px 10px 0px;
+  -webkit-box-shadow: 3px 3px 3px 1px #7A8C89;
+  box-shadow: 3px 3px 3px 1px #7A8C89;
 }
+
+.yes_no_buttons {
+  margin-bottom: 17px;
+}
+
+.btn {
+  margin-right: 5px;
+}
+
+.bet {
+  float: left;
+  margin-right: 20px;
+}
+
+.decision {
+  float: left;
+  margin-right: 20px;
+}
+
