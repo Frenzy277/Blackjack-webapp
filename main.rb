@@ -37,13 +37,13 @@ post '/new_player' do
     session[:game_count]  = 0
     session[:balance]     = START_BALANCE
     session[:house]       = HOUSE_BALANCE
-    redirect '/game'
+    redirect '/bet'
   end
 end
 
 get '/game' do
   if !session[:bet]
-    if session[:balance] > 0
+    if session[:balance] > session[:min_bet]
       redirect '/bet'
     else
       @error = "#{name} does not have enough chips to start a new game."
