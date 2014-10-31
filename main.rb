@@ -12,7 +12,9 @@ HIGH_CARDS          = %w(10 jack queen king ace)
 BLACKJACK_BENCHMARK = 21
 DEALER_MIN_HIT      = 17
 
-set :sessions, true
+use Rack::Session::Cookie, :key => 'rack.session',
+                           :path => '/',
+                           :secret => 'ASJdjskdjkleh342'
 helpers Helpers
 
 get '/' do
