@@ -169,10 +169,6 @@ end
     redirect '/game'
   end
 
-get '/rules' do
-  erb :rules
-end
-
 get '/gameover' do
   @gameover = true
   session[:game_count] = 0
