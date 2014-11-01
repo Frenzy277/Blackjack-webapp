@@ -89,7 +89,7 @@ post '/game/player/hit' do
     session[:player_status] = 'loss'
     @end                    = true
   elsif total == BLACKJACK_BENCHMARK
-    redirect '/game/player/stay'
+    session[:player_status] = 'stay'
   end
 
   erb :game
