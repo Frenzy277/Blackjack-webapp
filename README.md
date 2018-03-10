@@ -1,8 +1,9 @@
-# BLACKJACK assignment
+# BLACKJACK
 
 This repository serves as home for my first Sinatra web app - Blackjack.
 The assignment is done for Tealeaf Academy - course 1 - week 4.
 
+You can find this project home page on [this url](https://blackjack-challenge.herokuapp.com/).
 
 ## How to start?
 1. Make sure the 'sinatra' gem is installed. (gem install sinatra)
